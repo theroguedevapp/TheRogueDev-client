@@ -7,14 +7,15 @@
     --color-lg-grey: #ACB8BA;
     --color-deep-dark: #0E141B;
     --color-smooth-white: #F5F7F8;
+    --color-soft-black: #333;
 }
 
 * {
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 html {
-    font-family: segoe UI;
-    height: 100%;
+    font-family: 'Poppins';
     margin: 0;
 }

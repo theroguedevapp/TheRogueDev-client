@@ -1,0 +1,68 @@
+<form action="#" method="post">
+    <div
+        class="main-content flex flex-col items-center justify-center bg-gradient-to-br from-primary-color to-deep-dark min-h-screen gap-3 pb-16 pt-16">
+
+        <div class="text-icon flex flex-col items-center gap-3">
+            <img class="rounded-full w-24 h-24" src="/logo.png" alt="Logo">
+            <p class="text-2xl text-center text-smooth-white m-3">
+                Realize seu <span class="text-emerald">cadastro</span>.
+            </p>
+        </div>
+
+        <div
+            class="container-register flex flex-col w-full max-w-lg bg-primary-color rounded-xl shadow-lg shadow-deep-dark p-6">
+            <div class="flex flex-col p-6 gap-2">
+                <h2 class="text-2xl text-center text-smooth-white">Criar sua conta</h2>
+                <p class="text-sm text-center text-smooth-white">Entre com suas credenciais para continuar</p>
+            </div>
+            <div class="user-infos flex flex-col px-6 text-smooth-white gap-4">
+                <div class="flex flex-col gap-2">
+                    <label for="user">Username</label>
+                    <input type="text" id="user" placeholder="Digite seu usuário"
+                        class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="mail">Email</label>
+                    <input type="email" id="mail" placeholder="Digite seu email"
+                        class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="flex flex-col flex-1 gap-1">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" placeholder="Digite seu nome"
+                            class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+                    </div>
+                    <div class="flex flex-col flex-1 gap-1">
+                        <label for="secondname">Sobrenome</label>
+                        <input type="text" id="secondname" placeholder="Digite seu sobrenome"
+                            class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" placeholder="Digite sua senha"
+                        class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="confirmPassword">Confirmar Senha</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirme sua senha"
+                        class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+                </div>
+                <button type="submit"
+                    class="w-full h-12 bg-emerald hover:bg-emerald-400 text-white font-bold rounded-md">
+                    Criar Conta
+                </button>
+                <div class="flex flex-row gap-4 pt-4">
+                    <button type="button" class="flex items-center justify-center flex-1 h-10 bg-black rounded-md">
+                        <i class="devicon-github-original scale-110"></i>
+                    </button>
+                    <button type="button" class="flex items-center justify-center flex-1 h-10 bg-white rounded-md">
+                        <img class="w-5 h-5"
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg"
+                            alt="Google">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
