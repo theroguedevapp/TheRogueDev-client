@@ -1,10 +1,13 @@
-<nav class="flex justify-between items-center px-100 h-20 bg-black">
-    <div class="w-20 h-20">
-        <img class="" src="/logo.png" alt="">
+<div class="header-container flex items-center justify-between px-20 w-full bg-deep-dark">
+    <div class="">
+        <img src="/logo_transparent.png" alt="Logo" class="h-20 w-20 mx-1" />
     </div>
-    <div class="flex justify-center gap-3 text-2xl text-smooth-white">
-        <a href="">Home</a>
-        <a href="">Desafios</a>
+    <div class="buttons flex items-center text-emerald text-xl gap-2">
+        <button class="h-10 px-2 hover:bg-secondary-color rounded-sm" aria-label="Home">Home</button>
+        <button class="h-10 px-2 hover:bg-secondary-color rounded-sm" aria-label="Desafios">Desafios</button>
+        <button class="h-10 px-2 hover:bg-secondary-color rounded-sm" aria-label="Fórum">Fórum</button>
     </div>
-    <div class=""></div>
-</nav>
+    <div class="login flex items-center text-smooth-white ">
+        <button class="h-10 p-4 flex items-center bg-emerald hover:bg-emerald-400 rounded-sm cursor-pointer" aria-label="Fórum" (click)="goToLogin()">Entrar</button>
+    </div>
+</div>

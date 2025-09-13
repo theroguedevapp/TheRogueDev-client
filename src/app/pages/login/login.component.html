@@ -1,34 +1,44 @@
 <div
-    class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-primary-color to-deep-dark m-0 p-0 gap-8">
-    <div class="flex flex-col items-center gap-1">
-        <img class="rounded-full w-30 h-30" src="/logo.png" alt="">
-        <h2 class="text-5xl text-smooth-white text-center font-bold font-segoe ui ">The Rogue <span
-                class="text-emerald">Dev</span></h2>
-        <p class="text-2xl text-center text-smooth-white m-3">Evolua a cada run.</p>
+    class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-primary-color to-deep-dark gap-6 pb-16 px-4">
+    <div class="title flex flex-col items-center gap-3 text-center">
+        <img class="rounded-full w-24 h-24" src="/logo.png" alt="Logo">
+        <h2 class="text-4xl sm:text-5xl text-smooth-white font-bold font-segoe-ui">
+            The Rogue <span class="text-emerald">Dev</span>
+        </h2>
+        <p class="text-xl sm:text-2xl text-smooth-white">
+            Evolua a cada <span class="text-emerald">run</span>.
+        </p>
     </div>
-    <div
-        class="flex aling-center just-center flex-col bg-primary-color w-100 h-120 rounded-2xl shadow-lg shadow-deep-dark">
-        <div class="flex flex-col p-6 gap-2">
+    <div class="content flex flex-col bg-primary-color rounded-md shadow-lg shadow-deep-dark w-full max-w-md p-6">
+        <div class="flex flex-col gap-2 mb-4">
             <h2 class="text-2xl text-center text-smooth-white">Acessar sua conta</h2>
-            <p class="text-1x1 text-center text-smooth-white">Entre com suas credencias para continuar</p>
+            <p class="text-sm text-center text-smooth-white">Entre com suas credenciais para continuar</p>
         </div>
-        <div class="flex flex-col gap-4">
-            <div class="flex flex-col justify-center items-center gap-2">
-                <label class="flex flex-col gap-2 text-smooth-white" for="user">Usuário<input
-                        class="bg-deep-dark w-60 h-10 rounded-sm p-4" type="text" id="user"
-                        placeholder="Digite seu Usuário"></label>
+        <form class="flex flex-col gap-4">
+            <label for="user" class="flex flex-col gap-2 text-smooth-white">
+                Usuário
+                <input type="text" id="user" placeholder="Digite seu usuário"
+                    class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+            </label>
+            <label for="password" class="flex flex-col gap-2 text-smooth-white">
+                Senha
+                <input type="password" id="password" placeholder="Digite sua senha"
+                    class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+            </label>
+            <label for="remember" class="flex justify-center items-center gap-2 text-smooth-white cursor-pointer">
+                <input type="checkbox" id="remember" class="cursor-pointer">
+                Lembrar de mim
+            </label>
+            <div class="flex justify-center items-center gap-2 text-smooth-white text-sm">
+                <p>Não possui conta?</p>
+                <button type="button" class="text-emerald font-medium hover:underline" (click)="goToRegister()">
+                    Registre aqui
+                </button>
             </div>
-            <div class="flex flex-col justify-center items-center">
-                <label class="flex flex-col gap-2 text-smooth-white" for="password">Senha<input
-                        class="bg-deep-dark w-60 h-10 rounded-sm p-4" type="password" id="password"
-                        placeholder="Digite sua senha"></label>
-            </div>
-            <div class="flex flex-col justify-center items-center p-4">
-                <label class="flex flex-row gap-2 text-smooth-white" for="remember">Lembrar de mim <input
-                        type="checkbox" id="remember"></label>
-            </div>
-        </div>
-        <div class="flex justify-center p-4"><button class="bg-emerald w-25 h-10 text-center text-smooth-white rounded-sm trasiton delay-100 duration-200 
-            ease-in-out hover:scale-106 hover:bg-secondary-color ">Entrar</button></div>
+            <button type="submit"
+                class="bg-emerald w-full h-12 text-center text-smooth-white font-bold rounded-md hover:bg-emerald-400">
+                Entrar
+            </button>
+        </form>
     </div>
 </div>
