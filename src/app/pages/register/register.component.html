@@ -1,4 +1,4 @@
-<form action="#" method="post">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div
         class="main-content flex flex-col items-center justify-center bg-gradient-to-br from-primary-color to-deep-dark min-h-screen gap-3 pb-16 pt-16">
 
@@ -18,45 +18,103 @@
             <div class="user-infos flex flex-col px-6 text-smooth-white gap-4">
                 <div class="flex flex-col gap-2">
                     <label for="user">Username</label>
-                    <input type="text" id="user" placeholder="Digite seu usuário"
+                    <input type="text" id="user" placeholder="Digite seu usuário" formControlName="username"
                         class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+
+                    @if (usernameControl?.invalid && (usernameControl?.dirty || usernameControl?.touched)) {
+                    @if (usernameControl?.hasError('required')) {
+                    <span class="text-red-400">Nome de usuário obrigatório!</span>
+                    } @else if (usernameControl?.hasError('minlength')) {
+                    <span class="text-red-400">Nome deve haver mais de 3 caracteres!</span>
+                    } @else if (usernameControl?.hasError('maxlength')) {
+                    <span class="text-red-400">Nome deve haver menos de 15 caracteres!</span>
+                    }
+
+                    }
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="mail">Email</label>
-                    <input type="email" id="mail" placeholder="Digite seu email"
+                    <input type="email" id="mail" placeholder="Digite seu email" formControlName="email"
                         class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+
+                    @if (emailControl?.invalid && (emailControl?.dirty || emailControl?.touched)) {
+                    @if (emailControl?.hasError('required')) {
+                    <span class="text-red-400">Email obrigatório!</span>
+                    } @else if (emailControl?.hasError('email')) {
+                    <span class="text-red-400">Digite um email válido!</span>
+                    }
+                    }
                 </div>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <div class="flex flex-col flex-1 gap-1">
                         <label for="name">Nome</label>
-                        <input type="text" id="name" placeholder="Digite seu nome"
+                        <input type="text" id="name" placeholder="Digite seu nome completo" formControlName="name"
                             class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
-                    </div>
-                    <div class="flex flex-col flex-1 gap-1">
-                        <label for="secondname">Sobrenome</label>
-                        <input type="text" id="secondname" placeholder="Digite seu sobrenome"
-                            class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+                        @if (nameControl?.invalid && (nameControl?.dirty || nameControl?.touched)) {
+                        @if(nameControl?.hasError('required')) {
+                        <span class="text-red-400">Nome obrigatório!</span>
+                        } @else if (nameControl?.hasError('minlength')) {
+                        <span class="text-red-400">Nome deve ter no mínimo 3 caracteres</span>
+                        }
+                        }
                     </div>
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="password">Senha</label>
-                    <input type="password" id="password" placeholder="Digite sua senha"
+                    <input type="password" id="password" placeholder="Digite sua senha" formControlName="password"
                         class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+
+                    @if (passwordControl?.invalid && (passwordControl?.dirty || passwordControl?.touched)) {
+                    @if (passwordControl?.hasError('required')) {
+                    <span class="text-red-400">Senha obrigatória!</span>
+                    } @else if (passwordControl?.hasError('minlength')) {
+                    <span class="text-red-400">Senha deve haver pelo menos 8 caracteres!</span>
+                    } @else if (passwordControl?.hasError("maxlength")) {
+                    <span class="text-red-400">Senha deve ter no máximo 255 caracteres!</span>
+                    }
+                    }
+
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="confirmPassword">Confirmar Senha</label>
                     <input type="password" id="confirmPassword" placeholder="Confirme sua senha"
+                        formControlName="confirmPassword"
                         class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+
+                    @if (confirmPasswordControl?.invalid && (confirmPasswordControl?.dirty ||
+                    confirmPasswordControl?.touched)) {
+                    @if (confirmPasswordControl?.hasError('required')) {
+                    <span class="text-red-400">A confirmação é obrigatória!</span>
+                    } @else if (confirmPasswordControl?.hasError('passwordMismatch')) {
+                    <span class="text-red-400">As senhas não coincidem!</span>
+                    }
+                    }
+
                 </div>
-                <button type="submit"
-                    class="w-full h-12 bg-emerald hover:bg-emerald-400 text-white font-bold rounded-md">
-                    Criar Conta
-                </button>
+
+                <div class="btn flex flex-col gap-2">
+                    <button type="submit"
+                        class="w-full h-12 bg-emerald hover:bg-emerald-400 text-white font-bold rounded-md">
+                        Criar Conta
+                    </button>
+
+                    @if (errorMessage) {
+                    <span class="text-red-400">{{errorMessage}}</span>
+                    } @else if (successMessage) {
+                    <span class="bg-emerald-400">{{successMessage}}</span>
+                    }
+                </div>
+                <div class="flex justify-center items-center gap-2 text-smooth-white text-sm">
+                    <p>Já possui conta?</p>
+                    <button type="button" class="text-emerald font-medium hover:underline" (click)="goToLogin()">
+                        Entre aqui
+                    </button>
+                </div>
                 <div class="flex flex-row gap-4 pt-4">
                     <button type="button" class="flex items-center justify-center flex-1 h-10 bg-black rounded-md">
                         <i class="devicon-github-original scale-110"></i>
                     </button>
-                    <button type="button" class="flex items-center justify-center flex-1 h-10 bg-white rounded-md">
+                    <button type="submit" class="flex items-center justify-center flex-1 h-10 bg-white rounded-md">
                         <img class="w-5 h-5"
                             src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg"
                             alt="Google">
