@@ -14,16 +14,28 @@
             <h2 class="text-2xl text-center text-smooth-white">Acessar sua conta</h2>
             <p class="text-sm text-center text-smooth-white">Entre com suas credenciais para continuar</p>
         </div>
-        <form class="flex flex-col gap-4">
-            <label for="user" class="flex flex-col gap-2 text-smooth-white">
-                Usuário
-                <input type="text" id="user" placeholder="Digite seu usuário"
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+            <label for="email" class="flex flex-col gap-2 text-smooth-white">
+                Email
+                <input type="text" id="user" placeholder="Digite seu email" formControlName="email"
                     class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+                @if(emailControl?.invalid && (emailControl?.dirty || emailControl?.touched)) {
+                @if(emailControl?.hasError('required')) {
+                <p class="text-red-400">Email obrigatório!</p>
+                } @else if(emailControl?.hasError('email')) {
+                <p class="text-red-400">Email inválido!</p>
+                }
+                }
             </label>
             <label for="password" class="flex flex-col gap-2 text-smooth-white">
                 Senha
-                <input type="password" id="password" placeholder="Digite sua senha"
+                <input type="password" id="password" placeholder="Digite sua senha" formControlName="password"
                     class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+                @if(passwordControl?.invalid && (passwordControl?.dirty || passwordControl?.touched)) {
+                @if(passwordControl?.hasError('required')) {
+                <p class="text-red-400">Senha obrigatória!</p>
+                }
+                }
             </label>
             <label for="remember" class="flex justify-center items-center gap-2 text-smooth-white cursor-pointer">
                 <input type="checkbox" id="remember" class="cursor-pointer">
@@ -35,10 +47,15 @@
                     Registre aqui
                 </button>
             </div>
-            <button type="submit"
-                class="bg-emerald w-full h-12 text-center text-smooth-white font-bold rounded-md hover:bg-emerald-400">
-                Entrar
-            </button>
+            <div class="button flex flex-col items-center gap-2">
+                <button type="submit"
+                    class="bg-emerald w-full h-12 text-center text-smooth-white font-bold rounded-md hover:bg-emerald-400">
+                    Entrar
+                </button>
+                @if(errorMessage) {
+                <p class="text-red-400">{{errorMessage}}</p>
+                }
+            </div>
         </form>
     </div>
 </div>
