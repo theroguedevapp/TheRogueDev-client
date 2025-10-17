@@ -44,21 +44,22 @@ export class AuthService {
     return this.http.get<User>(`${this.apiUrl}/api/v1/user`).pipe(
       tap((user) => {
         this.userSubject.next(user);
-        this._isInitialized = true;
+        
       }),
       catchError(() => {
         this.userSubject.next(null);
-        this._isInitialized = true;
         return of(null);
       })
     );
   }
 
-  initAuth(): Observable<User | null> {
+  initAuth(): Observable<User | null | undefined> {
     if (!isPlatformBrowser(this.platformId) || this._isInitialized) {
       return of(this.userSubject.value);
     }
 
+    this._isInitialized = true;
+    
     return this.loadUser();
   }
 
@@ -70,7 +71,7 @@ export class AuthService {
     return !!this.userSubject.value;
   }
 
-  get currentUser(): User | null {
+  get currentUser(): User | null | undefined {
     return this.userSubject.value;
   }
 

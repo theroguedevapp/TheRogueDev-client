@@ -3,11 +3,11 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { authGuard } from './guards/auth.guard';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 export const routes: Routes = [{
     path: "login",
     component: LoginComponent,
-    canActivate: [authGuard]
 },
 {
     path: "",
@@ -16,6 +16,10 @@ export const routes: Routes = [{
 {
     path: "register",
     component: RegisterComponent,
+},
+{
+    path: "user",
+    component: UserProfileComponent,
     canActivate: [authGuard]
 }
 ];

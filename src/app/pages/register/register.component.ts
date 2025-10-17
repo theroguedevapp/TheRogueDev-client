@@ -102,7 +102,4 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('name');
   }
 
-  goToLogin() {
-    this.router.navigate(['/login']);
-  }
 }
