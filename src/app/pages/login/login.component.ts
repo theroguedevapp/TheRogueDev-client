@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Form, FormBuilder, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { console } from 'inspector';
 
 
 
@@ -14,13 +15,19 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService) {}
+  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService) { }
 
   loginForm!: FormGroup;
   errorMessage = '';
 
   ngOnInit() {
     this.initLoginForm();
+
+    if (this.authService.userLogged) {
+      const redirectUrl = this.authService.getRedirectUrl() || '/';
+      this.authService.clearRedirectUrl();
+      void this.router.navigate([redirectUrl]);
+    }
   }
 
   private initLoginForm() {
@@ -34,18 +41,20 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       this.errorMessage = '';
+
+      const { email, password } = this.loginForm.value;
+
+      this.authService.login({ email, password }).subscribe({
+        next: () => {
+          const redirectUrl = this.authService.getRedirectUrl() || '/';
+          this.authService.clearRedirectUrl();
+          void this.router.navigate([redirectUrl]);;
+        },
+        error: (error: HttpErrorResponse) => {
+          this.errorMessage = this.checkError(error);
+        }
+      });
     }
-
-    const { email, password } = this.loginForm.value;
-
-    this.authService.login({ email, password }).subscribe({
-      next: () => {
-        this.router.navigate(['']);
-      },
-      error: (error: HttpErrorResponse) => {
-        this.errorMessage = this.checkError(error);
-      }
-    });
   }
 
   private checkError(error: HttpErrorResponse) {
@@ -58,10 +67,6 @@ export class LoginComponent implements OnInit {
     } else {
       return 'Erro desconhecido!';
     }
-  }
-
-  goToRegister() {
-    this.router.navigate(['/register']);
   }
 
   get emailControl() {
