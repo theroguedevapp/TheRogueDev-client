@@ -1,0 +1,61 @@
+<div
+    class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-primary-color to-deep-dark gap-6 pb-16 px-4">
+    <div class="title flex flex-col items-center gap-3 text-center">
+        <img class="rounded-full w-24 h-24" src="/logo.png" alt="Logo">
+        <h2 class="text-4xl sm:text-5xl text-smooth-white font-bold font-segoe-ui">
+            The Rogue <span class="text-emerald">Dev</span>
+        </h2>
+        <p class="text-xl sm:text-2xl text-smooth-white">
+            Evolua a cada <span class="text-emerald">run</span>.
+        </p>
+    </div>
+    <div class="content flex flex-col bg-primary-color rounded-md shadow-lg shadow-deep-dark w-full max-w-md p-6">
+        <div class="flex flex-col gap-2 mb-4">
+            <h2 class="text-2xl text-center text-smooth-white">Acessar sua conta</h2>
+            <p class="text-sm text-center text-smooth-white">Entre com suas credenciais para continuar</p>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+            <label for="email" class="flex flex-col gap-2 text-smooth-white">
+                Email
+                <input type="text" id="user" placeholder="Digite seu email" formControlName="email"
+                    class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+                @if(emailControl?.invalid && (emailControl?.dirty || emailControl?.touched)) {
+                @if(emailControl?.hasError('required')) {
+                <p class="text-red-400">Email obrigatório!</p>
+                } @else if(emailControl?.hasError('email')) {
+                <p class="text-red-400">Email inválido!</p>
+                }
+                }
+            </label>
+            <label for="password" class="flex flex-col gap-2 text-smooth-white">
+                Senha
+                <input type="password" id="password" placeholder="Digite sua senha" formControlName="password"
+                    class="bg-deep-dark w-full h-10 rounded-md p-4 placeholder-gray-400">
+                @if(passwordControl?.invalid && (passwordControl?.dirty || passwordControl?.touched)) {
+                @if(passwordControl?.hasError('required')) {
+                <p class="text-red-400">Senha obrigatória!</p>
+                }
+                }
+            </label>
+            <label for="remember" class="flex justify-center items-center gap-2 text-smooth-white cursor-pointer">
+                <input type="checkbox" id="remember" class="cursor-pointer">
+                Lembrar de mim
+            </label>
+            <div class="flex justify-center items-center gap-2 text-smooth-white text-sm">
+                <p>Não possui conta?</p>
+                <button type="button" class="text-emerald font-medium hover:underline">
+                    Registre aqui
+                </button>
+            </div>
+            <div class="button flex flex-col items-center gap-2">
+                <button type="submit"
+                    class="bg-emerald w-full h-12 text-center text-smooth-white font-bold rounded-md hover:bg-emerald-400">
+                    Entrar
+                </button>
+                @if(errorMessage) {
+                <p class="text-red-400">{{errorMessage}}</p>
+                }
+            </div>
+        </form>
+    </div>
+</div>

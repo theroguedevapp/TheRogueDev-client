@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+
+@theme {
+    --color-primary-color: #171F27;
+    --color-secondary-color: #1E2933;
+    --color-emerald: #2EC0AD;
+    --color-lg-grey: #ACB8BA;
+    --color-deep-dark: #0E141B;
+    --color-smooth-white: #F5F7F8;
+    --color-soft-black: #333;
+
+}
+
+@layer base {
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+
+        border-radius: theme('borderRadius.md');
+        -webkit-text-fill-color: theme('colors.smooth-white');
+        -webkit-box-shadow: 0 0 0 1000px theme('colors.deep-dark') inset;
+
+
+    }
+}
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html {
+    font-family: 'Poppins';
+    margin: 0;
+}
