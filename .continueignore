@@ -1,0 +1,23 @@
+# Impede o Continue de indexar lixo de build e segredos no @codebase.
+node_modules/
+.angular/
+dist/
+coverage/
+package-lock.json
+
+# Segredos
+.env
+.env.*
+src/app/enviroments/enviroment-prod.ts
+
+# Binarios e midia
+*.log
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.woff
+*.woff2
+*.ttf

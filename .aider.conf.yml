@@ -1,0 +1,43 @@
+# aider — TheRogueDev, com modelo local via Ollama
+#
+#   pipx install aider-chat        (ou: python -m pip install aider-install && aider-install)
+#   aider
+#
+# OLLAMA_API_BASE ja esta definida no ambiente do usuario (http://127.0.0.1:11434).
+
+# --- Modelo -------------------------------------------------------------
+# Prefixo ollama_chat/ (nao ollama/) — o endpoint de chat rende melhor.
+# qwen-coder-dev vem do Modelfile.qwen-coder, com num_ctx=16384 travado no
+# servidor, entao nao depende do aider mandar a opcao certa.
+model: ollama_chat/qwen-coder-dev
+
+# --- O ajuste que decide se funciona ou nao -----------------------------
+# "whole" faz o modelo reescrever o arquivo inteiro em vez de emitir blocos
+# search/replace. A doc do aider recomenda para modelos locais quantizados.
+# Custo: com 16k de contexto, edite arquivos de ate ~300 linhas por vez.
+edit-format: whole
+
+# --- Git ----------------------------------------------------------------
+# Rede de seguranca: se o modelo estragar o arquivo, git diff mostra e /undo reverte.
+# Este repo ja tem commit inicial, entao /undo funciona desde o comeco.
+auto-commits: true
+dirty-commits: false
+attribute-author: false
+attribute-committer: false
+
+# --- Convencoes do projeto ---------------------------------------------
+read:
+  - AGENTS.md
+
+# --- Economia de contexto -----------------------------------------------
+# Repomap via tree-sitter e util mas come contexto. Com 16k, mantenha pequeno.
+map-tokens: 512
+
+# Nao rodar lint/teste automatico: num i7-4790K cada ciclo e lento e o modelo
+# pequeno costuma piorar o codigo tentando corrigir o proprio lint.
+auto-lint: false
+auto-test: false
+
+# --- Interface ----------------------------------------------------------
+dark-mode: true
+stream: true

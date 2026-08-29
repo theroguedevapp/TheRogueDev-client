@@ -45,3 +45,16 @@ Thumbs.db
 
 /src/app/pages/user-profile
 
+
+### SEGREDOS ###
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+
+### Lacuna: so /.angular/cache estava coberto ###
+/.angular
